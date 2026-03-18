@@ -15,9 +15,8 @@ namespace AgendaWeb.Components.Pages
 
         protected async Task GuardarContacto()
         {
-            ContactoServices.Insertar(Contacto);
+            await ContactoServices.InsertarAsync(Contacto);
 
-            await Task.CompletedTask;
         }
         protected void Cancelar()
         {

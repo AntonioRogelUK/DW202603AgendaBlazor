@@ -13,26 +13,26 @@ namespace AgendaWeb.Services
             _contactoCommand = contactoCommand;
         }
 
-        public void Insertar(ContactoNuevoDto contactoNuevoDto)
+        public async Task InsertarAsync(ContactoNuevoDto contactoNuevoDto)
         {
             Contacto contacto = new Contacto();
             contacto.Nombre = contactoNuevoDto.Nombre;
             contacto.Telefono = contactoNuevoDto.Telefono;
             contacto.Email = contactoNuevoDto.Email;
 
-            int registrosAfectados = _contactoCommand.InsertarContacto(contacto);
+            int registrosAfectados = await _contactoCommand.InsertarContactoAsync(contacto);
 
             if (registrosAfectados == 0)
             {
                 throw new Exception("No se pudo insertar el contacto.");
             }
         }
-        public int EliminarContacto(int id)
+        public async Task<int> EliminarContactoAsync(int id)
         {
-            return _contactoCommand.EliminarContacto(id);
+            return await _contactoCommand.EliminarContactoAsync(id);
         }
 
-        public int ActualizarContacto(int id, ContactoActualizarDto contactoActualizarDto)
+        public async Task<int> ActualizarContactoAsync(int id, ContactoActualizarDto contactoActualizarDto)
         {
             Contacto contacto = new Contacto
             {
@@ -40,7 +40,7 @@ namespace AgendaWeb.Services
                 Telefono = contactoActualizarDto.Telefono,
                 Email = contactoActualizarDto.Email
             };
-            return _contactoCommand.ActualizarContacto(id, contacto);
+            return await _contactoCommand.ActualizarContactoAsync(id, contacto);
         }
     }
 }
