@@ -12,7 +12,7 @@ namespace AgendaWeb.Data.Commands
             _sqlServer = sqlServer;
         }
 
-        public int InsertarContacto(Contacto contacto)
+        public async Task<int> InsertarContactoAsync(Contacto contacto)
         {
             string query = "INSERT INTO Contactos" +
                 " (Nombre, Telefono, Email) " +
@@ -24,20 +24,20 @@ namespace AgendaWeb.Data.Commands
                 new SqlParameter("@Telefono", contacto.Telefono),
                 new SqlParameter("@Email", contacto.Email)
             };
-            return _sqlServer.NonQuery(query, parameters);
+            return await _sqlServer.NonQueryAsync(query, parameters);
         }
 
-        public int EliminarContacto(int id)
+        public async Task<int> EliminarContactoAsync(int id)
         {
             string query = "DELETE FROM Contactos WHERE Id = @Id";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Id", id)
             };
-            return _sqlServer.NonQuery(query, parameters);
+            return await _sqlServer.NonQueryAsync(query, parameters);
         }
 
-        public int ActualizarContacto(int id, Contacto contacto)
+        public async Task<int> ActualizarContactoAsync(int id, Contacto contacto)
         {
             string query = "UPDATE Contactos " +
                 "SET" +
@@ -52,7 +52,7 @@ namespace AgendaWeb.Data.Commands
                 new SqlParameter("@Telefono", contacto.Telefono),
                 new SqlParameter("@Email", contacto.Email)
             };
-            return _sqlServer.NonQuery(query, parameters);
+            return await _sqlServer.NonQueryAsync(query, parameters);
         }
     }
 }

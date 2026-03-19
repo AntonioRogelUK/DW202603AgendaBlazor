@@ -34,14 +34,7 @@ namespace AgendaWeb.Components.Pages
         //}
         private void IncrementCount()
         {
-            ContactoNuevoDto contactoNuevoDto = new ContactoNuevoDto
-            {
-                Nombre = "Utilizando services",
-                Telefono = "6621456823",
-                Email = "cosoloco13@gmail.com"
-            };
-
-            ContactoServices.Insertar(contactoNuevoDto);
+     
         }
     }
 }
